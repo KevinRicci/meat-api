@@ -1,0 +1,28 @@
+{
+  "name": "meat-api",
+  "version": "1.0.0",
+  "description": "An API developed with Typescript in Node and MongoDB.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KevinRicci/meat-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KevinRicci/meat-api/issues"
+  },
+  "homepage": "https://github.com/KevinRicci/meat-api#readme",
+  "dependencies": {
+    "mongoose": "4.13.9",
+    "restify": "^8.4.0"
+  },
+  "devDependencies": {
+    "@types/mongoose": "5.5.34",
+    "@types/restify": "5.0.6"
+  }
+}
