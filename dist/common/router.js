@@ -1,5 +1,19 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-class Router {
+const events_1 = require("events");
+class Router extends events_1.EventEmitter {
+    render(response, next) {
+        return (document) => {
+            if (document) {
+                this.emit('beforeRender', document);
+                response.json(document);
+                return next();
+            }
+            else {
+                response.send(404);
+                return next();
+            }
+        };
+    }
 }
 exports.Router = Router;

@@ -3,6 +3,7 @@ import { environment } from '../common/environment'
 import { userRouter } from '../user/user.router'
 import * as mongoose from 'mongoose'
 import {mergePatchJsonParser} from './merge-patch.parser'
+import {errorHandler} from './error.handler'
 
 export class Server {
     public application: restify.Server
@@ -25,6 +26,7 @@ export class Server {
                 this.application.use(restify.plugins.queryParser())
                 this.application.use(restify.plugins.bodyParser())
                 this.application.use(mergePatchJsonParser)
+                this.application.on('restifyError', errorHandler)
 
                 userRouter.applyRoutes(this.application)
 

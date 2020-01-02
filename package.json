@@ -18,11 +18,16 @@
   },
   "homepage": "https://github.com/KevinRicci/meat-api#readme",
   "dependencies": {
+    "bcryptjs": "2.4.3",
+    "cpf-check": "3.0.0",
     "mongoose": "4.13.9",
-    "restify": "^8.4.0"
+    "restify": "8.4.0",
+    "restify-errors": "5.0.0"
   },
   "devDependencies": {
+    "@types/bcryptjs": "2.4.2",
     "@types/mongoose": "5.5.34",
-    "@types/restify": "5.0.6"
+    "@types/restify": "5.0.6",
+    "@types/restify-errors": "4.3.2"
   }
 }
