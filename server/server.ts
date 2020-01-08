@@ -1,16 +1,16 @@
 import * as restify from 'restify'
-import { environment } from '../common/environment'
-import { userRouter } from '../user/user.router'
 import * as mongoose from 'mongoose'
-import {mergePatchJsonParser} from './merge-patch.parser'
-import {errorHandler} from './error.handler'
+import { environment } from '../common/environment'
+import { mergePatchJsonParser } from './merge-patch.parser'
+import { errorHandler } from './error.handler'
+import {usersRouter} from '../user/users.router'
 
 export class Server {
     public application: restify.Server
 
-    public initializeDB(): Promise<mongoose.Mongoose>{
+    public initializeDB(): Promise<mongoose.Mongoose> {
         (<any>mongoose.Promise) = global.Promise
-        return mongoose.connect(environment.db.url,{
+        return mongoose.connect(environment.db.url, {
             useMongoClient: true
         })
     }
@@ -22,13 +22,14 @@ export class Server {
                     name: 'meat-api',
                     version: '1.0.0'
                 })
-                
+
                 this.application.use(restify.plugins.queryParser())
                 this.application.use(restify.plugins.bodyParser())
                 this.application.use(mergePatchJsonParser)
                 this.application.on('restifyError', errorHandler)
 
-                userRouter.applyRoutes(this.application)
+                //attaching routes to application
+                usersRouter.applyRoutes(this.application)
 
                 this.application.listen(environment.server.port, () => {
                     console.log('Server is up on localhost:' + environment.server.port)
@@ -42,7 +43,7 @@ export class Server {
     }
 
     public bootstrap(): Promise<restify.Server> {
-        return this.initializeDB().then(()=>{
+        return this.initializeDB().then(() => {
             return this.initRoutes()
         })
     }

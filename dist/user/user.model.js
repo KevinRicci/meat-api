@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose = require("mongoose");
 const cpf_check_1 = require("cpf-check");
 const bcryptjs = require("bcryptjs");
+const environment_1 = require("../common/environment");
 const UserSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -41,9 +42,9 @@ UserSchema.pre('save', function (next) {
         return next();
     }
     else {
-        const hash = bcryptjs.hashSync(user.password.toString(), bcryptjs.genSaltSync(10));
+        const hash = bcryptjs.hashSync(user.password.toString(), environment_1.environment.security.salts);
         user.password = hash;
         return next();
     }
 });
-exports.User = mongoose.model('User', UserSchema);
+exports.User = mongoose.model('User', UserSchema, 'users');

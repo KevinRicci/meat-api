@@ -3,7 +3,7 @@ import CPF, { validate } from 'cpf-check'
 import * as bcryptjs from 'bcryptjs'
 import {environment} from '../common/environment'
 
-interface User extends mongoose.Document{
+export interface User extends mongoose.Document{
     name: String
     email: String
     password: String
@@ -53,4 +53,4 @@ UserSchema.pre('save', function(next){
     }
 })
 
-export const User = mongoose.model<User>('User', UserSchema)
+export const User = mongoose.model<User>('User', UserSchema, 'users')
