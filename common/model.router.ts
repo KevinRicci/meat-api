@@ -35,7 +35,7 @@ export abstract class ModelRouter<T extends mongoose.Document> extends Router {
                 if (result.n) {
                     return this.specificRouter.findById(req.params.id)
                 } else {
-                    throw new NotFoundError(`${this.specificRouter.collection.collectionName} not found`)
+                    throw new NotFoundError(`${this.specificRouter.collection.collectionName} not found.`)
                 }
             }).then(this.render(resp, next).catch(next))
     }
@@ -51,7 +51,7 @@ export abstract class ModelRouter<T extends mongoose.Document> extends Router {
                 resp.send(204)
                 return next()
             } else {
-                throw new NotFoundError(`${this.specificRouter.collection.collectionName} not found`)
+                throw new NotFoundError(`${this.specificRouter.collection.collectionName} not found.`)
             }
         }).catch(next)
     }

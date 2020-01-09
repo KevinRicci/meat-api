@@ -4,6 +4,7 @@ import { environment } from '../common/environment'
 import { mergePatchJsonParser } from './merge-patch.parser'
 import { errorHandler } from './error.handler'
 import {usersRouter} from '../user/users.router'
+import {restaurantsRouter} from '../restaurants/restaurants.router'
 
 export class Server {
     public application: restify.Server
@@ -30,6 +31,7 @@ export class Server {
 
                 //attaching routes to application
                 usersRouter.applyRoutes(this.application)
+                restaurantsRouter.applyRoutes(this.application)
 
                 this.application.listen(environment.server.port, () => {
                     console.log('Server is up on localhost:' + environment.server.port)

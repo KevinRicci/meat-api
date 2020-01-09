@@ -33,7 +33,7 @@ class ModelRouter extends router_1.Router {
                     return this.specificRouter.findById(req.params.id);
                 }
                 else {
-                    throw new restify_errors_1.NotFoundError(`${this.specificRouter.collection.collectionName} not found`);
+                    throw new restify_errors_1.NotFoundError(`${this.specificRouter.collection.collectionName} not found.`);
                 }
             }).then(this.render(resp, next).catch(next));
         };
@@ -48,7 +48,7 @@ class ModelRouter extends router_1.Router {
                     return next();
                 }
                 else {
-                    throw new restify_errors_1.NotFoundError(`${this.specificRouter.collection.collectionName} not found`);
+                    throw new restify_errors_1.NotFoundError(`${this.specificRouter.collection.collectionName} not found.`);
                 }
             }).catch(next);
         };

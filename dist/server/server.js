@@ -6,6 +6,7 @@ const environment_1 = require("../common/environment");
 const merge_patch_parser_1 = require("./merge-patch.parser");
 const error_handler_1 = require("./error.handler");
 const users_router_1 = require("../user/users.router");
+const restaurants_router_1 = require("../restaurants/restaurants.router");
 class Server {
     initializeDB() {
         mongoose.Promise = global.Promise;
@@ -26,6 +27,7 @@ class Server {
                 this.application.on('restifyError', error_handler_1.errorHandler);
                 //attaching routes to application
                 users_router_1.usersRouter.applyRoutes(this.application);
+                restaurants_router_1.restaurantsRouter.applyRoutes(this.application);
                 this.application.listen(environment_1.environment.server.port, () => {
                     console.log('Server is up on localhost:' + environment_1.environment.server.port);
                     resolve(this.application);
